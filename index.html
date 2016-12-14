@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Zynq FPGA - Median Filter by loruro</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Zynq FPGA - Median Filter</h1>
+        <h2></h2>
+        <a href="https://github.com/loruro/Zynq_FPGA_Median_Filter" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><a href="https://loruro.github.io/"><sub>⟵ Back</sub></a></p>
+
+<p>Purpose of the project was to connect webcam to  <a href="http://zedboard.org/product/zedboard">ZedBoard</a>, filter received image with simple 3x3 <a href="https://en.wikipedia.org/wiki/Median_filter">median filter</a> and show results on display.</p>
+
+<p>ZedBoard is a development kit featuring <a href="http://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html">Zynq-7000 All Programmable SoC XC7Z020-CLG484-1</a>. It contains both ARM Cortex-A9 and Artix-7 FPGA inside one chip.<br>
+<a href="http://xillybus.com/xillinux">Xillinux</a> is running on ARM which is Linux distribution dedicated for this board. It already has interfaces for communication with FPGA in the form of FIFOs in /dev directory.<br>
+FPGA can be easily programmed without knowing VHDL, Verilog or any other HDL. There is a tool called <a href="https://www.xilinx.com/products/design-tools/vivado/integration/esl-design.html">Vivado HLS</a> which transforms program written in C to HDL and later synthesizes it to FPGA configuration.</p>
+
+<div align="center"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/diagram.png" width="379"></div>  
+
+<p>Median filter is a digital filter often used in digital image processing for noise removal.</p>
+
+<h2>
+<a id="implementation" class="anchor" href="#implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implementation</h2>
+
+<p>This implementation uses version of median filter where each of RGB channel is median filtered separately.</p>
+
+<p>For receiving image from webcam and displaying filtered result I used ARM side of Zynq SoC. Camera was connected to the board by USB and display by VGA. Xillinux automatically recognized both devices.<br>
+To read frames from webcam I used <a href="http://opencv.org/">OpenCV</a> library. Also I used it for splitting images to separate RGB channels before sending them to FPGA and for adding some artificial noise to image because original frames from webcam were too clear to see results of the filter.<br>
+Color channels were being sent to FPGA and simultaneously processed ones were being received. Those received channels were being assemblied back to entire frames also with help of OpenCV and finally displayed on the screen.<br>
+All of this was done by <a href="https://github.com/loruro/Zynq_FPGA_Median_Filter/blob/master/Xillinux/main.cpp">this</a> program.</p>
+
+<p>On FPGA there was a simple <a href="https://github.com/loruro/Zynq_FPGA_Median_Filter/blob/master/FPGA/main.c">implementation</a> of median filter which receives each row of pixels and using three of them generates row of filtered pixels.</p>
+
+<h2>
+<a id="result" class="anchor" href="#result" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Result</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/original.jpg" width="320"></th>
+<th align="center"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/filtered.jpg" width="320"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Original (artificially noised)</td>
+<td align="center">Filtered</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="https://loruro.github.io/"><sub>⟵ Back</sub></a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/loruro/Zynq_FPGA_Median_Filter/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/loruro/Zynq_FPGA_Median_Filter/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/loruro/Zynq_FPGA_Median_Filter"></a> is maintained by <a href="https://github.com/loruro">loruro</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
