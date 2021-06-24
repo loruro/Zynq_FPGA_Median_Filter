@@ -5,7 +5,7 @@ Purpose of the project was to connect webcam to  [ZedBoard](http://zedboard.org/
 ZedBoard is a development kit featuring [Zynq-7000 All Programmable SoC XC7Z020-CLG484-1](http://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html). It contains both ARM Cortex-A9 and Artix-7 FPGA inside one chip.  
 [Xillinux](http://xillybus.com/xillinux) is running on ARM which is Linux distribution dedicated for this board. It already has interfaces for communication with FPGA in the form of FIFOs in /dev directory.  
 FPGA can be easily programmed without knowing VHDL, Verilog or any other HDL. There is a tool called [Vivado HLS](https://www.xilinx.com/products/design-tools/vivado/integration/esl-design.html) which transforms program written in C to HDL and later synthesizes it to FPGA configuration.
-<div align="center"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/diagram.png" width="379"/></div>  
+<div align="center"><a href="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/diagram.png" target="_blank"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/diagram.png" width="379"/></a></div>  
 Median filter is a digital filter often used in digital image processing for noise removal.
 
 ## Implementation
@@ -21,7 +21,7 @@ On FPGA there was a simple [implementation](https://github.com/loruro/Zynq_FPGA_
 
 ## Result
 
-| <img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/original.jpg" width="320"/> | <img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/filtered.jpg" width="320"/> |
+| <a href="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/original.jpg" target="_blank"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/original.jpg" width="320"/></a> | <a href="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/filtered.jpg" target="_blank"><img src="https://raw.githubusercontent.com/loruro/Zynq_FPGA_Median_Filter/master/img/filtered.jpg" width="320"/></a> |
 | :------------------------------------------: |:---------------------------------------:|
 | Original (artificially noised) | Filtered |
 
